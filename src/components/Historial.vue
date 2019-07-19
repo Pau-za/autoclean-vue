@@ -1,41 +1,53 @@
 <template>
-  <div class="container text-light" id="historial">
+  <div class="container" id="historial">
     <h1>historial</h1>
-    <div v-for="venta in historial" :key="venta.auto" id="sales" class="card" style="width: 18rem;">
+    <!-- <button type="button" class="btn btn-info" @click="readData">Historial</button> -->
+    <div v-for="venta in historial" :key="venta.auto" id="sales" class="card">
       <!-- <img src="..." class="card-img-top" alt="..." /> -->
       <div class="card-body">
         <h5 class="card-title">{{venta.data().auto}}</h5>
         <p class="card-text">{{venta.data().placas}}</p>
-        <!-- <p class="card-text">Las placas</p>
-        <p class="card-text">el lugar</p>-->
         <a href="#" class="btn btn-primary">Go somewhere</a>
       </div>
     </div>
-  </div>
+</div>
 </template>
 
 <script>
+import { db } from "../js/firebase.js";
 import firebase from "firebase";
-import { mapActions } from "vuex";
 
 export default {
-  data() {
-    return {
-      historial: []
-    };
-  },
-  // methods: {
-  //   ...mapActions([
-  //     "getPost" // map `this.increment()` to `this.$store.dispatch('increment')`
-  //   ]),
-  //   ...mapActions({
-  //     add: "getPost" // map `this.add()` to `this.$store.dispatch('increment')`
-  //   }),
-  //   created () {
-  //     store.dispatch('getPost')
-  //   }
-  // }
-};
+    data() {
+        return {
+            historial: []
+        };
+    },
+    methods: {
+      readData() {
+        // alert('sad ')
+        db.collection("historial")
+        .orderBy("fecha")
+        .get()
+        .then(onSnapshot => {
+          onSnapshot.forEach(doc => {
+            this.historial.push(doc)
+            console.log(doc.data());
+          })
+        })
+      },
+      },
+      created(){
+        console.log('Hola');
+        this.readData()
+
+      },     
+      updated (){
+        console.log('montao');
+        
+        // this.readData()
+      }
+}
 </script>
 
 <style>
