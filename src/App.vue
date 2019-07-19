@@ -17,7 +17,7 @@
         <li class="nav-item">
           <router-link class="nav-link logo-text text-light m-3" to="/servicio">Consultar mi pedido</router-link>
         </li>
-        <li class="nav-link logo-text text-light" @click="signOut()">Cerrar sesión</li>
+        <button class="btn btn-danger" @click="signOut()">Cerrar sesión</button>
       </ul>
     </nav>
     <main>

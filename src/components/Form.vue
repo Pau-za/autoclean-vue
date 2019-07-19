@@ -40,7 +40,7 @@
           id="formGroupExampleInput2"
         />
       </div>
-      <label>Ingresa tu ubicación</label>
+      <label>Tu ubicación actual es:</label>
       <GmapMap class="container mt-5"
         v-bind:center =  "{lat : 19.4292730   , lng :  -99.1806473 } "
         v-bind:zoom = " 18 "
@@ -53,8 +53,9 @@
         
         />
       </GmapMap>
-    
+    <router-link to="/servicio">
     <button class="btn btn-primary btn-lg m-4" type="submit">Enviar</button>
+    </router-link>
 
     </form>
   </div>
