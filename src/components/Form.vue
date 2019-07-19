@@ -3,15 +3,15 @@
     <form v-on:submit.prevent="saveService">
         <label class="mb-5">Ingresa los datos de tu auto aquí</label>
         <div class="form-group">
-            <input v-model="newService.placas" type="text" class="form-control" id="formGroupExampleInput" placeholder="No. de Placa" />
+            <input v-model="newService.numPlaca" type="text" class="form-control" id="formGroupExampleInput" placeholder="No. de Placa" />
         </div>
         <div class="form-group">
-            <input v-model="newService.auto" type="text" class="form-control" id="formGroupExampleInput2" placeholder="Marca" />
+            <input v-model="newService.marca" type="text" class="form-control" id="formGroupExampleInput2" placeholder="Marca" />
         </div>
         <div class="form-group">
             <input v-model="newService.color" type="text" class="form-control" id="formGroupExampleInput2" placeholder="Color" />
         </div>
-        <!-- <div class="form-group">
+        <div class="form-group">
         <input
           @change="saveFoto"
           v-if="uploadReady"
@@ -21,7 +21,7 @@
           class="form-control"
           id="formGroupExampleInput2"
         />
-      </div> -->
+      </div>
         <GmapMap class="container mt-5" v-bind:center="{lat : 19.4292730   , lng :  -99.1806473 } " v-bind:zoom=" 18 " style=" width: 80%; height: 300px ">
             <GmapMarker v-bind:position=" {lat : 19.4292730  , lng : -99.1806473 } " v-bind:clickable="true" v-bind:draggable="true" />
         </GmapMap>
@@ -47,42 +47,35 @@ export default {
         return {
             uploadReady: true,
             newService: {
-                placas: "",
-                auto: "",
+                numPlaca: "",
+                marca: "",
                 color: "",
-                // imagen: ""
+                imagen: ""
             }
 
         };
     },
     methods: {
-      saveService(){
-        db.collection("historial").add(this.newService)
-          .then((docRef) => {
-          })
-          .catch(function(error) {
-          });
-      },
-        // serviceSave() {
-        //     db.collection("services").add(this.newService)
-        //         .then((docRef) => {
-        //             console.log("Document written with ID: ", docRef.id);
-        //         })
-        //         .catch(function (error) {
-        //             console.error("Error adding document: ", error);
-        //         }),
+        serviceSave() {
+            db.collection("services").add(this.newService)
+                .then((docRef) => {
+                    console.log("Document written with ID: ", docRef.id);
+                })
+                .catch(function (error) {
+                    console.error("Error adding document: ", error);
+                }),
 
-        //         this.uploadReady = false
-        //     this.$nextTick(() => {
-        //         this.uploadReady = true;
-        //     })
-        //     this.newService = {
-        //         numPlaca: "",
-        //         marca: "",
-        //         color: "",
-        //         imagen: ""
-        //     }
-        // },
+                this.uploadReady = false
+            this.$nextTick(() => {
+                this.uploadReady = true;
+            })
+            this.newService = {
+                numPlaca: "",
+                marca: "",
+                color: "",
+                imagen: ""
+            }
+        },
         saveFoto() {
             this.newService.imagen = this.$refs.myFiles.files
             console.log(this.newService.imagen);
