@@ -1,7 +1,7 @@
 <template>
   <div class="container" id="historial">
     <h1>historial</h1>
-    <button type="button" class="btn btn-info" @click="readData">Info</button>
+    <!-- <button type="button" class="btn btn-info" @click="readData">Historial</button> -->
     <div v-for="venta in historial" :key="venta.auto" id="sales" class="card">
       <!-- <img src="..." class="card-img-top" alt="..." /> -->
       <div class="card-body">
@@ -25,6 +25,7 @@ export default {
     },
     methods: {
       readData() {
+        // alert('sad ')
         db.collection("historial")
         .orderBy("fecha")
         .get()
@@ -35,10 +36,17 @@ export default {
           })
         })
       },
+      },
       created(){
+        console.log('Hola');
         this.readData()
+
+      },     
+      updated (){
+        console.log('montao');
+        
+        // this.readData()
       }
-    },
 }
 </script>
 
