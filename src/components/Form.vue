@@ -79,7 +79,6 @@ export default {
         saveFoto() {
             this.newService.imagen = this.$refs.myFiles.files
             console.log(this.newService.imagen);
-
         },
         // serviceSave() {
         //   this.uploadReady=false
