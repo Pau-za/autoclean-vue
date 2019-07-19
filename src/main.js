@@ -33,6 +33,4 @@ new Vue({
     App
   }
 });
-// })
 
-// Store.dispatch('getPost')
