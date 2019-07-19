@@ -2,12 +2,11 @@
   <div class="container" id="historial">
     <h1>historial</h1>
     <!-- <button type="button" class="btn btn-info" @click="readData">Historial</button> -->
-    <div v-for="venta in historial" :key="venta.auto" id="sales" class="card">
+    <div v-for="venta in historial" :key="venta.auto" id="servicios" class="card">
       <!-- <img src="..." class="card-img-top" alt="..." /> -->
       <div class="card-body">
         <h5 class="card-title">{{venta.data().auto}}</h5>
         <p class="card-text">{{venta.data().placas}}</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
       </div>
     </div>
 </div>

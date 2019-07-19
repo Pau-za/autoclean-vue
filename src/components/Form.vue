@@ -22,12 +22,11 @@
           id="formGroupExampleInput2"
         />
       </div> -->
-        <label>Ingresa tu ubicación</label>
         <GmapMap class="container mt-5" v-bind:center="{lat : 19.4292730   , lng :  -99.1806473 } " v-bind:zoom=" 18 " style=" width: 80%; height: 300px ">
             <GmapMarker v-bind:position=" {lat : 19.4292730  , lng : -99.1806473 } " v-bind:clickable="true" v-bind:draggable="true" />
         </GmapMap>
 
-        <button class="btn btn-primary btn-lg m-4" type="submit">Enviar</button>
+        <button class="btn btn-primary btn-lg m-4" type="submit">Confirmar</button>
 
     </form>
 </div>
