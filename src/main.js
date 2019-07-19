@@ -5,6 +5,7 @@ import router from './router'
 import store from './store'
 
 import * as VueGoogleMaps from 'vue2-google-maps'
+import Vuex from 'vuex'
 
 Vue.config.productionTip = false;
 

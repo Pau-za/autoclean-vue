@@ -23,7 +23,7 @@ firebase.auth().onAuthStateChanged((user) => {
     console.log(user);
     //   router.replace('feed');
     // redirigir a la vista protegida
-    this.$store.dispatch('observer', {
+    return this.$store.dispatch('observer', {
       email: user.email,
       uid: user.uid,
       displayName: user.displayName
@@ -31,6 +31,7 @@ firebase.auth().onAuthStateChanged((user) => {
   } else {
     // this.$store.dispatch('observer', null);
     // redirigir a la vista de login
+    return user.uid = null;
     console.log('no hay usuario activo');
   }
 })
