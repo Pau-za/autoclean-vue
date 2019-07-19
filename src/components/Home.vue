@@ -1,16 +1,11 @@
 <template>
   <div class="container text-light">
-     <img class="img-thumbnail images-circle" src="../assets/carwash-vector.png" alt="Vue.js PWA" />
+    <img class="img-thumbnail images-circle" src="../assets/carwash-vector.png" alt="Vue.js PWA" />
     <h1 class="mt-2">Auto Clean</h1>
     <h2 class="mt-5">Bienvenidos</h2>
     <p>"Tu automóvil limpio, sin salir de casa"</p>
     <a class="btn btn-primary btn-lg mr-2 text-light" @click="login =! login">Entra</a>
-
-    <a
-      class="btn btn-primary btn-lg text-light"
-      @click="signIn =! signIn"
-    >Registrate</a>
-
+    <a class="btn btn-primary btn-lg text-light" @click="signIn =! signIn">Registrate</a>
     <Login v-if="login === true" />
     <SignIn v-if="signIn === true" />
   </div>
@@ -19,7 +14,7 @@
 <script>
 import Login from "./Login";
 import SignIn from "./SignIn";
-import {mapActions} from "vuex";
+import { mapActions } from "vuex";
 
 export default {
   name: "home",
@@ -37,12 +32,11 @@ export default {
 </script>
 
 <style scoped>
-h1{
+h1 {
   font-size: 3.5em;
 }
-p{
+p {
   font-size: 1.5em;
 }
-
 </style>
 
