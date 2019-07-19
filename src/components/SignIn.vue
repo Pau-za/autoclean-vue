@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="form-group">
-      <label for="exampleInputEmail1">Email address</label>
+      <label for="exampleInputEmail1">Email</label>
       <input
         type="email"
         class="form-control"
@@ -12,11 +12,11 @@
       />
       <small
         id="emailHelp"
-        class="form-text text-muted"
-      >We'll never share your email with anyone else.</small>
+        class="form-text text-light"
+      >Nunca compartiremos tu información con nadie más</small>
     </div>
     <div class="form-group">
-      <label for="exampleInputPassword1">Password</label>
+      <label for="exampleInputPassword1">Contraseña</label>
       <input
         type="password"
         class="form-control"
