@@ -38,7 +38,6 @@
           accept="image/*"
           class="form-control"
           id="formGroupExampleInput2"
-          placeholder="Imagen"
         />
       </div> -->
       <label>Ingresa tu ubicación</label>
@@ -55,15 +54,14 @@
         />
       </GmapMap>
     
-    <button class="btn btn-outline-light btn-lg m-4" type="submit">Enviar</button>
+    <button class="btn btn-primary btn-lg m-4" type="submit">Enviar</button>
 
     </form>
   </div>
 </template>
 
 <script>
-import { db } from "../js/firebase.js";
-import firebase from "firebase";
+  import {db} from '../js/firebase.js'
 
 export default {
   name: "form",
@@ -73,23 +71,47 @@ export default {
   data() {
     return {
       uploadReady:true,
-      newService: {
-        placas: "",
-        auto: "",
+       newService: {
+        numPlaca: "",
+        marca: "",
         color: "",
-        // imagen: ""
-      }
+        imagen: ""
+       }
+      
     };
   },
   methods: {
-    saveService(){
-      db.collection("historial").add(this.newService)
-        .then((docRef) => {
-          console.log("Document written with ID: ", docRef.id);
-        })
-        .catch(function(error){
-          console.error("Error adding document: ", error);
-        })
+    serviceSave() {
+
+      db.collection("services").add(this.newService)
+      .then((docRef)=> {
+       console.log("Document written with ID: ", docRef.id);
+    })
+      .catch(function(error) {
+        console.error("Error adding document: ", error);
+    }),
+
+      
+    
+      this.uploadReady=false
+      this.$nextTick( ()=>{
+        this.uploadReady=true;
+      })
+      this.newService={
+        numPlaca: "",
+        marca: "",
+        color: "",
+        imagen: ""
+      }
+      
+
+     
+    },
+    saveFoto(){
+     this.newService.imagen= this.$refs.myFiles.files
+     console.log(this.newService.imagen);
+      
+
     },
     // serviceSave() {
     //   this.uploadReady=false

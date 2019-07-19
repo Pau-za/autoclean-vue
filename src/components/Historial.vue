@@ -1,15 +1,15 @@
 <template>
-<div class="container" id="Servicio">
-    <h1>Servicio</h1>
-    <button type="button" class="btn btn-secondary btn-sm" @click="readData">Read</button>
-    <div v-for="item in historial" class="card">
-    <div class="card-body">
-      <p>{{ item.auto }}</p>
-      <p>{{ item.color }}</p>
-      <p>{{ item.placas }}</p>
-      <!-- <p>{{ item.fecha }}</p> -->
+  <div class="container" id="historial">
+    <h1>historial</h1>
+    <button type="button" class="btn btn-info" @click="readData">Info</button>
+    <div v-for="venta in historial" :key="venta.auto" id="sales" class="card">
+      <!-- <img src="..." class="card-img-top" alt="..." /> -->
+      <div class="card-body">
+        <h5 class="card-title">{{venta.data().auto}}</h5>
+        <p class="card-text">{{venta.data().placas}}</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
     </div>
-</div>
 </div>
 </template>
 
@@ -30,11 +30,14 @@ export default {
         .get()
         .then(onSnapshot => {
           onSnapshot.forEach(doc => {
-            this.historial.push(doc.data())
+            this.historial.push(doc)
             console.log(doc.data());
           })
         })
       },
+      created(){
+        this.readData()
+      }
     },
 }
 </script>

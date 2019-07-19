@@ -1,7 +1,7 @@
 import firebase from 'firebase'
-require("firebase/firestore")
-// import store from '@/store'
-// import router from '../router';
+require ("firebase/firestore")
+import store from '@/store'
+import router from '../router';
 
 
 const config = {
@@ -39,4 +39,7 @@ firebase.auth().onAuthStateChanged((user) => {
 
 const db = firebase.firestore();
 
-export { db }
+export  {
+  db
+  //   googleAuth
+}
