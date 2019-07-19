@@ -2,6 +2,8 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import store from './store'
+import Vuex from 'vuex'
+
 import * as VueGoogleMaps from 'vue2-google-maps'
 
 Vue.config.productionTip = false;
@@ -31,6 +33,5 @@ new Vue({
     App
   }
 });
-})
 
 // Store.dispatch('getPost')
