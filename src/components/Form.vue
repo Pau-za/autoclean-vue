@@ -1,10 +1,10 @@
 <template>
   <div class="form container mt-5 text-light">
-    <form v-on:submit.prevent="serviceSave">
+    <form v-on:submit.prevent="saveService">
       <label class="mb-5">Ingresa los datos de tu auto aquí</label>
       <div class="form-group">
         <input
-          v-model="newService.numPlaca"
+          v-model="newService.placas"
           type="text"
           class="form-control"
           id="formGroupExampleInput"
@@ -13,7 +13,7 @@
       </div>
       <div class="form-group">
         <input
-          v-model="newService.marca"
+          v-model="newService.auto"
           type="text"
           class="form-control"
           id="formGroupExampleInput2"
@@ -29,7 +29,7 @@
           placeholder="Color"
         />
       </div>
-      <div class="form-group">
+      <!-- <div class="form-group">
         <input
           @change="saveFoto"
           v-if="uploadReady"
@@ -40,7 +40,7 @@
           id="formGroupExampleInput2"
           placeholder="Imagen"
         />
-      </div>
+      </div> -->
       <label>Ingresa tu ubicación</label>
       <GmapMap class="container mt-5"
         v-bind:center =  "{lat : 19.4292730   , lng :  -99.1806473 } "
@@ -62,6 +62,9 @@
 </template>
 
 <script>
+import { db } from "../js/firebase.js";
+import firebase from "firebase";
+
 export default {
   name: "form",
   mounted(){
@@ -70,38 +73,41 @@ export default {
   data() {
     return {
       uploadReady:true,
-
       newService: {
-        numPlaca: "",
-        marca: "",
+        placas: "",
+        auto: "",
         color: "",
-        imagen: ""
+        // imagen: ""
       }
     };
   },
   methods: {
-    serviceSave() {
-      this.uploadReady=false
-      this.$nextTick( ()=>{
-        this.uploadReady=true;
-      })
-      console.log(this.newService);
-      this.newService={
-        numPlaca: "",
-        marca: "",
-        color: "",
-        imagen: ""
-      }
-      
-
-     
+    saveService(){
+      db.collection("historial").add(this.newService)
+        .then((docRef) => {
+          console.log("Document written with ID: ", docRef.id);
+        })
+        .catch(function(error){
+          console.error("Error adding document: ", error);
+        })
     },
-    saveFoto(){
-     this.newService.imagen= this.$refs.myFiles.files
-     console.log(this.newService.imagen);
-      
-
-    },
+    // serviceSave() {
+    //   this.uploadReady=false
+    //   this.$nextTick( ()=>{
+    //     this.uploadReady=true;
+    //   })
+    //   console.log(this.newService);
+    //   this.newService={
+    //     numPlaca: "",
+    //     marca: "",
+    //     color: "",
+    //     imagen: ""
+    //   }
+    // },
+    // saveFoto(){
+    //  this.newService.imagen= this.$refs.myFiles.files
+    //  console.log(this.newService.imagen);
+    // },
     localizacion(){
      if(navigator.geolocation){
         navigator.geolocation.getCurrentPosition( (position)=>{
